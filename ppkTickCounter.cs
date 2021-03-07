@@ -24,7 +24,7 @@ using NinjaTrader.NinjaScript.DrawingTools;
 //This namespace holds Indicators in this folder and is required. Do not change it. 
 namespace NinjaTrader.NinjaScript.Indicators
 {
-	public class ppwTickCounter : Indicator
+	public class ppkTickCounter : Indicator
 	{
 
 		private SimpleFont font = new SimpleFont("ARIAL", 13);
@@ -34,7 +34,7 @@ namespace NinjaTrader.NinjaScript.Indicators
 			if (State == State.SetDefaults)
 			{
 				Description									= @"Tick counter next to forming bar";
-				Name										= "ppwTickCounter";
+				Name										= "ppkTickCounter";
 				Calculate									= Calculate.OnEachTick;
 				IsOverlay									= false;
 				DisplayInDataBox							= false;
@@ -75,19 +75,19 @@ namespace NinjaTrader.NinjaScript.Indicators
 {
 	public partial class Indicator : NinjaTrader.Gui.NinjaScript.IndicatorRenderBase
 	{
-		private ppwTickCounter[] cacheppwTickCounter;
-		public ppwTickCounter ppwTickCounter()
+		private ppkTickCounter[] cacheppkTickCounter;
+		public ppkTickCounter ppkTickCounter()
 		{
-			return ppwTickCounter(Input);
+			return ppkTickCounter(Input);
 		}
 
-		public ppwTickCounter ppwTickCounter(ISeries<double> input)
+		public ppkTickCounter ppkTickCounter(ISeries<double> input)
 		{
-			if (cacheppwTickCounter != null)
-				for (int idx = 0; idx < cacheppwTickCounter.Length; idx++)
-					if (cacheppwTickCounter[idx] != null &&  cacheppwTickCounter[idx].EqualsInput(input))
-						return cacheppwTickCounter[idx];
-			return CacheIndicator<ppwTickCounter>(new ppwTickCounter(), input, ref cacheppwTickCounter);
+			if (cacheppkTickCounter != null)
+				for (int idx = 0; idx < cacheppkTickCounter.Length; idx++)
+					if (cacheppkTickCounter[idx] != null &&  cacheppkTickCounter[idx].EqualsInput(input))
+						return cacheppkTickCounter[idx];
+			return CacheIndicator<ppkTickCounter>(new ppkTickCounter(), input, ref cacheppkTickCounter);
 		}
 	}
 }
@@ -96,14 +96,14 @@ namespace NinjaTrader.NinjaScript.MarketAnalyzerColumns
 {
 	public partial class MarketAnalyzerColumn : MarketAnalyzerColumnBase
 	{
-		public Indicators.ppwTickCounter ppwTickCounter()
+		public Indicators.ppkTickCounter ppkTickCounter()
 		{
-			return indicator.ppwTickCounter(Input);
+			return indicator.ppkTickCounter(Input);
 		}
 
-		public Indicators.ppwTickCounter ppwTickCounter(ISeries<double> input )
+		public Indicators.ppkTickCounter ppkTickCounter(ISeries<double> input )
 		{
-			return indicator.ppwTickCounter(input);
+			return indicator.ppkTickCounter(input);
 		}
 	}
 }
@@ -112,14 +112,14 @@ namespace NinjaTrader.NinjaScript.Strategies
 {
 	public partial class Strategy : NinjaTrader.Gui.NinjaScript.StrategyRenderBase
 	{
-		public Indicators.ppwTickCounter ppwTickCounter()
+		public Indicators.ppkTickCounter ppkTickCounter()
 		{
-			return indicator.ppwTickCounter(Input);
+			return indicator.ppkTickCounter(Input);
 		}
 
-		public Indicators.ppwTickCounter ppwTickCounter(ISeries<double> input )
+		public Indicators.ppkTickCounter ppkTickCounter(ISeries<double> input )
 		{
-			return indicator.ppwTickCounter(input);
+			return indicator.ppkTickCounter(input);
 		}
 	}
 }

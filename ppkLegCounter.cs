@@ -168,7 +168,7 @@ namespace NinjaTrader.NinjaScript.Indicators
 
 		private void MarkHighPivot()
         {
-			MarkBar(shortLegCount);
+			MarkBar(shortLegCount, Brushes.Red);
 			lastHighPivot = CurrentBar - 1;
 			lastPivot = Pivot.HIGH;
 			previousLegHigh = currentLegHigh;
@@ -178,7 +178,7 @@ namespace NinjaTrader.NinjaScript.Indicators
 
 		private void MarkLowPivot()
         {
-			MarkBar(longLegCount);
+			MarkBar(longLegCount, Brushes.LimeGreen);
 			lastLowPivot = CurrentBar - 1;
 			lastPivot = Pivot.LOW;
 			previousLegLow = currentLegLow;
@@ -186,15 +186,15 @@ namespace NinjaTrader.NinjaScript.Indicators
 			currentLegLow = -1;
         }
 
-		private void MarkBar(long count)
+		private void MarkBar(long count, Brush color)
         {
 			if (currentDirection == Direction.LONG)
             {
-				Draw.Text(this, "longLeg" + longLabelId++, false, "" + count, 1, Low[1] - TickSize * 3, 0, Brushes.White, font, TextAlignment.Center, Brushes.Transparent, Brushes.Transparent, 0);
+				Draw.Text(this, "longLeg" + longLabelId++, false, "" + count, 1, Low[1] - TickSize * 3, 0, color, font, TextAlignment.Center, Brushes.Transparent, Brushes.Transparent, 0);
             }
 			else if (currentDirection == Direction.SHORT)
             {
-				Draw.Text(this, "shortLeg" + shortLabelId++, false, "" + count, 1, High[1] + TickSize * 3, 0, Brushes.White, font, TextAlignment.Center, Brushes.Transparent, Brushes.Transparent, 0);
+				Draw.Text(this, "shortLeg" + shortLabelId++, false, "" + count, 1, High[1] + TickSize * 3, 0, color, font, TextAlignment.Center, Brushes.Transparent, Brushes.Transparent, 0);
 			}
         }
 
